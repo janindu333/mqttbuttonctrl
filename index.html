@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>MQTT BUTTONS</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		.grid-container {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-gap: 10px;
+			width: 100vw;
+			height: 100vh;
+			padding: 10px;
+			box-sizing: border-box;
+			align-items: center;
+			justify-items: center;
+		}
+
+		.grid-item {
+			width: 120px;
+			height: 60px;
+			background-color: #f0f0f0;
+			border-radius: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 18px;
+			color: #fff;
+		}
+
+		/* Customize the background colors of individual buttons */
+		.grid-item:nth-child(1) {
+			background-color: #ff6f61;
+		}
+
+		.grid-item:nth-child(2) {
+			background-color: #009688;
+		}
+
+		.grid-item:nth-child(3) {
+			background-color: #1aaf2d;
+		}
+
+		.grid-item:nth-child(4) {
+			background-color: #5a266e;
+		}
+
+		.grid-item:nth-child(5) {
+			background-color: #1b391f;
+		}
+
+
+		.grid-item:nth-child(6) {
+			background-color: #825252;
+		}
+
+		.grid-item:nth-child(7) {
+			background-color: #de72a6;
+		}
+
+		.grid-item:nth-child(8) {
+			background-color: #5a47fe;
+		}
+
+		.grid-item:nth-child(9) {
+			background-color: #82bee1;
+		}
+
+		.grid-item:nth-child(10) {
+			background-color: #1b391f;
+		}
+
+
+		.grid-item:nth-child(11) {
+			background-color: #825252;
+		}
+
+		.grid-item:nth-child(12) {
+			background-color: #de72a6;
+		}
+
+		.grid-item:nth-child(13) {
+			background-color: #5a47fe;
+		}
+
+		.grid-item:nth-child(14) {
+			background-color: #82bee1;
+		}
+
+		.grid-item:nth-child(15) {
+			background-color: #5a47fe;
+		}
+
+		.grid-item:nth-child(16) {
+			background-color: #82bee1;
+		}
+
+		.grid-item:nth-child(17) {
+			background-color: #5a47fe;
+		}
+
+		.grid-item:nth-child(18) {
+			background-color: #82bee1;
+		}
+
+
+
+		html {
+			box-sizing: border-box;
+			font-family: 'Arial', sans-serif;
+			font-size: 100%;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+			margin: 0;
+			padding: 0;
+		}
+
+		.mid {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-top: 1em;
+		}
+
+
+		/* Switch starts here */
+		.rocker {
+			display: inline-block;
+			position: relative;
+
+			font-size: 2em;
+			font-weight: bold;
+			text-align: center;
+			text-transform: uppercase;
+			color: #888;
+			width: 7em;
+			height: 4em;
+			overflow: hidden;
+			border-bottom: 0.5em solid #eee;
+		}
+
+		.rocker-small {
+			font-size: 1.05em;
+			/* Sizes the switch */
+			margin: 0.1em;
+		}
+
+		.rocker::before {
+			content: "";
+			position: absolute;
+			top: 0.5em;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #999;
+			border: 0.5em solid #eee;
+			border-bottom: 0;
+		}
+
+		.rocker input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		.switch-left,
+		.switch-right {
+			cursor: pointer;
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 2.5em;
+			width: 3em;
+			transition: 0.2s;
+		}
+
+		.switch-left {
+			height: 2.4em;
+			width: 2.75em;
+			left: 0.85em;
+			bottom: 0.4em;
+			background-color: #ddd;
+			transform: rotate(15deg) skewX(15deg);
+		}
+
+		.switch-right {
+			right: 0.5em;
+			bottom: 0;
+			background-color: #bd5757;
+			color: #fff;
+		}
+
+		.switch-left::before,
+		.switch-right::before {
+			content: "";
+			position: absolute;
+			width: 0.4em;
+			height: 2.45em;
+			bottom: -0.45em;
+			background-color: #ccc;
+			transform: skewY(-65deg);
+		}
+
+		.switch-left::before {
+			left: -0.4em;
+		}
+
+		.switch-right::before {
+			right: -0.375em;
+			background-color: transparent;
+			transform: skewY(65deg);
+		}
+
+		input:checked+.switch-left {
+			background-color: #0084d0;
+			color: #fff;
+			bottom: 0px;
+			left: 0.5em;
+			height: 2.5em;
+			width: 3em;
+			transform: rotate(0deg) skewX(0deg);
+		}
+
+		input:checked+.switch-left::before {
+			background-color: transparent;
+			width: 3.0833em;
+		}
+
+		input:checked+.switch-left+.switch-right {
+			background-color: #ddd;
+			color: #888;
+			bottom: 0.4em;
+			right: 0.8em;
+			height: 2.4em;
+			width: 2.75em;
+			transform: rotate(-15deg) skewX(-15deg);
+		}
+
+		input:checked+.switch-left+.switch-right::before {
+			background-color: #ccc;
+		}
+
+		/* Keyboard Users */
+		input:focus+.switch-left {
+			color: #333;
+		}
+
+		input:checked:focus+.switch-left {
+			color: #fff;
+		}
+
+		input:focus+.switch-left+.switch-right {
+			color: #fff;
+		}
+
+		input:checked:focus+.switch-left+.switch-right {
+			color: #333;
+		}
+
+		/* Keyboard Users */
+		input:focus+.switch-left {
+			color: #333;
+		}
+
+		input:checked:focus+.switch-left {
+			color: #fff;
+		}
+
+		input:focus+.switch-left+.switch-right {
+			color: #fff;
+		}
+
+		input:checked:focus+.switch-left+.switch-right {
+			color: #333;
+		}
+
+		/* Customize the pressed effect for grid-items */
+		.grid-item:active {
+			background-color: #ccc;
+		}
+
+		#wrapper {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+
+		}
+
+		.block {
+
+			flex: 0 0 50px;
+			margin: 0px;
+		}
+
+		.center-text {
+			display: flex;
+			justify-content: center;
+			color: black;
+			font-size: 15px;
+		}
+	</style>
+
+	<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+	<script type="text/javascript">
+
+		// API endpoint URL
+		var apiUrl = "https://api.telegram.org/bot1852235352:AAGUZt-eYEK7yD7nT4zSAT1HSOcKge5m-tQ/sendMessage";
+
+		// Payload data
+		var payloadData = {
+			chat_id: 163187786,
+			text: "test message"
+		};
+
+		const gridItems = document.querySelectorAll('.grid-item');
+
+		function checkBox1() {
+			var checkbox = document.getElementById('checkbox1');
+			localStorage.setItem('checkbox1State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_4_Lights_1", "ON");
+			} else {
+				publishMessage("Factory_4_Lights_1", "OFF");
+			}
+		}
+
+		function checkBox2() {
+			var checkbox = document.getElementById('checkbox2');
+			localStorage.setItem('checkbox2State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_4_Lights_2", "ON");
+			} else {
+				publishMessage("Factory_4_Lights_2", "OFF");
+			}
+		}
+
+		function checkBox3() {
+			var checkbox = document.getElementById('checkbox3');
+			localStorage.setItem('checkbox3State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_4_Alarms_1", "ON");
+			} else {
+				publishMessage("Factory_4_Alarms_1", "OFF");
+			}
+		}
+
+
+
+		function checkBox4() {
+			var checkbox = document.getElementById('checkbox4');
+			localStorage.setItem('checkbox4State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_4_Alarms_2", "ON");
+			} else {
+				publishMessage("Factory_4_Alarms_2", "OFF");
+			}
+		}
+
+
+
+		function checkBox5() {
+			var checkbox = document.getElementById('checkbox5');
+			localStorage.setItem('checkbox5State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_4_Gates_1", "ON");
+			} else {
+				publishMessage("Factory_4_Gates_1", "OFF");
+			}
+		}
+
+		function checkBox6() {
+			var checkbox = document.getElementById('checkbox6'); 4
+			localStorage.setItem('checkbox6State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_4_Gates_2", "ON");
+			} else {
+				publishMessage("Factory_4_Gates_2", "OFF");
+			}
+		}
+
+		function checkBox7() {
+			var checkbox = document.getElementById('checkbox7');
+			localStorage.setItem('checkbox7State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_5_Lights_1", "ON");
+			} else {
+				publishMessage("Factory_5_Lights_1", "OFF");
+			}
+		}
+
+		function checkBox8() {
+			var checkbox = document.getElementById('checkbox8');
+			localStorage.setItem('checkbox8State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_5_Lights_2", "ON");
+			} else {
+				publishMessage("Factory_5_Lights_2", "OFF");
+			}
+		}
+
+		function checkBox9() {
+			var checkbox = document.getElementById('checkbox9');
+			localStorage.setItem('checkbox9State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_5_Alarms_1", "ON");
+			} else {
+				publishMessage("Factory_5_Alarms_1", "OFF");
+			}
+		}
+
+		function checkBox10() {
+			var checkbox = document.getElementById('checkbox10');
+			localStorage.setItem('checkbox10State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_5_Alarms_2", "ON");
+			} else {
+				publishMessage("Factory_5_Alarms_2", "OFF");
+			}
+		}
+
+		function checkBox11() {
+			var checkbox = document.getElementById('checkbox11');
+			localStorage.setItem('checkbox11State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_5_Gates_1", "ON");
+			} else {
+				publishMessage("Factory_5_Gates_1", "OFF");
+			}
+		}
+
+		function checkBox12() {
+			var checkbox = document.getElementById('checkbox12');
+			localStorage.setItem('checkbox12State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_5_Gates_2", "ON");
+			} else {
+				publishMessage("Factory_5_Gates_2", "OFF");
+			}
+		}
+
+		function checkBox13() {
+			var checkbox = document.getElementById('checkbox13');
+			localStorage.setItem('checkbox13State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_6_Lights_1", "ON");
+			} else {
+				publishMessage("Factory_6_Lights_1", "OFF");
+			}
+		}
+
+		function checkBox14() {
+			var checkbox = document.getElementById('checkbox14');
+			localStorage.setItem('checkbox14State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_6_Lights_2", "ON");
+			} else {
+				publishMessage("Factory_6_Lights_2", "OFF");
+			}
+		}
+
+		function checkBox15() {
+			var checkbox = document.getElementById('checkbox15');
+			localStorage.setItem('checkbox15State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_6_Alarms_1", "ON");
+			} else {
+				publishMessage("Factory_6_Alarms_1", "OFF");
+			}
+		}
+
+		function checkBox16() {
+			var checkbox = document.getElementById('checkbox16');
+			localStorage.setItem('checkbox16State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_6_Alarms_2", "ON");
+			} else {
+				publishMessage("Factory_6_Alarms_2", "OFF");
+			}
+		}
+
+
+		function checkBox17() {
+			var checkbox = document.getElementById('checkbox17');
+			localStorage.setItem('checkbox17State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_6_Gates_1", "ON");
+			} else {
+				publishMessage("Factory_6_Gates_1", "OFF");
+			}
+		}
+
+		function checkBox18() {
+			var checkbox = document.getElementById('checkbox18');
+			localStorage.setItem('checkbox18State', checkbox.checked);
+			if (checkbox.checked == true) {
+				publishMessage("Factory_6_Gates_2", "ON");
+			} else {
+				publishMessage("Factory_6_Gates_2", "OFF");
+			}
+		}
+
+		const clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
+
+		const host = 'wss://broker.emqx.io:8084/mqtt'
+
+		const options = {
+			keepalive: 60,
+			clientId: clientId,
+			protocolId: 'MQTT',
+			protocolVersion: 4,
+			clean: true,
+			reconnectPeriod: 1000,
+			connectTimeout: 30 * 1000,
+			will: {
+				topic: 'WillMsg',
+				payload: 'Connection Closed abnormally..!',
+				qos: 0,
+				retain: false
+			},
+		}
+
+		console.log('Connecting mqtt client')
+		const client = mqtt.connect(host, options)
+
+		client.on('error', (err) => {
+			console.log('Connection error: ', err)
+			client.end()
+		})
+
+		client.on('reconnect', () => {
+			console.log('Reconnecting...')
+		})
+
+		client.on('connect', () => {
+			console.log('connected ...')
+
+			var topics = ["Factory_1_Lights_1", "Factory_1_Lights_2", "Factory_1_Alarms_1",
+				"Factory_1_Alarms_2", "Factory_1_Gates_1", "Factory_1_Gates_2",
+				"Factory_2_Lights_1", "Factory_2_Lights_2", "Factory_2_Alarms_1",
+				"Factory_2_Alarms_2", "Factory_2_Gates_1", "Factory_2_Gates_2",
+				"Factory_3_Lights_1", "Factory_3_Lights_2", "Factory_3_Alarms_1", "Factory_3_Alarms_2", "Factory_3_Gates_1",
+				"Factory_3_Gates_2",
+
+				"Factory_4_Lights_1", "Factory_4_Lights_2", "Factory_4_Alarms_1",
+				"Factory_4_Alarms_2", "Factory_4_Gates_1", "Factory_4_Gates_2",
+				
+				"Factory_5_Lights_1", "Factory_5_Lights_2", "Factory_5_Alarms_1",
+				"Factory_5_Alarms_2", "Factory_5_Gates_1", "Factory_5_Gates_2",
+
+				"Factory_6_Lights_1", "Factory_6_Lights_2", "Factory_6_Alarms_1",
+				"Factory_6_Alarms_2", "Factory_6_Gates_1", "Factory_6_Gates_2",
+
+			];
+
+			topics.forEach(function (topic) {
+				client.subscribe(topic, { qos: 0 })
+			});
+		})
+
+
+		client.on('message', (topic, message, packet) => {
+
+			console.log('Received Message: ' + message.toString() + '\nOn topic: ' + topic)
+			var status = message.toString();
+
+			switch (topic) {
+				case "Factory_4_Lights_1":
+
+					if (status === "ON") {
+						checkbox1.checked = true;
+					} else {
+						checkbox1.checked = false;
+					}
+					localStorage.setItem('checkbox1State', checkbox1.checked);
+					break;
+				case "Factory_4_Lights_2":
+					if (status === "ON") {
+						checkbox2.checked = true;
+					} else {
+						checkbox2.checked = false;
+					}
+					localStorage.setItem('checkbox2State', checkbox2.checked);
+					break;
+				case "Factory_4_Alarms_1":
+					if (status === "ON") {
+						checkbox3.checked = true;
+					} else {
+						checkbox3.checked = false;
+					}
+					localStorage.setItem('checkbox3State', checkbox3.checked);
+					break;
+				case "Factory_4_Alarms_2": 
+					if (status === "ON") {
+						checkbox4.checked = true;
+					} else {
+						checkbox4.checked = false;
+					}
+					localStorage.setItem('checkbox4State', checkbox4.checked);
+					break;
+				case "Factory_4_Gates_1":
+					if (status === "ON") {
+						checkbox5.checked = true;
+					} else {
+						checkbox5.checked = false;
+					}
+					localStorage.setItem('checkbox5State', checkbox5.checked);
+					break;
+				case "Factory_4_Gates_2":
+					if (status === "ON") {
+						checkbox6.checked = true;
+					} else {
+						checkbox6.checked = false;
+					}
+					localStorage.setItem('checkbox6State', checkbox6.checked);
+					break;
+				case "Factory_5_Lights_1":
+					if (status === "ON") {
+						checkbox7.checked = true;
+					} else {
+						checkbox7.checked = false;
+					}
+					localStorage.setItem('checkbox7State', checkbox7.checked);
+					break;
+				case "Factory_5_Lights_2":
+					if (status === "ON") {
+						checkbox8.checked = true;
+					} else {
+						checkbox8.checked = false;
+					}
+					localStorage.setItem('checkbox8State', checkbox8.checked);
+					break;
+				case "Factory_5_Alarms_1":
+					if (status === "ON") {
+						checkbox9.checked = true;
+					} else {
+						checkbox9.checked = false;
+					}
+					localStorage.setItem('checkbox9State', checkbox9.checked);
+					break;
+				case "Factory_5_Alarms_2":
+					if (status === "ON") {
+						checkbox10.checked = true;
+					} else {
+						checkbox10.checked = false;
+					}
+					localStorage.setItem('checkbox10State', checkbox10.checked);
+					break;
+				case "Factory_5_Gates_1":
+					if (status === "ON") {
+						checkbox11.checked = true;
+					} else {
+						checkbox11.checked = false;
+					}
+					localStorage.setItem('checkbox11State', checkbox11.checked);
+					break;
+				case "Factory_5_Gates_2":
+					if (status === "ON") {
+						checkbox12.checked = true;
+					} else {
+						checkbox12.checked = false;
+					}
+					localStorage.setItem('checkbox12State', checkbox12.checked);
+					break;
+				case "Factory_6_Lights_1":
+					if (status === "ON") {
+						checkbox13.checked = true;
+					} else {
+						checkbox13.checked = false;
+					}
+					localStorage.setItem('checkbox13State', checkbox13.checked);
+					break;
+				case "Factory_6_Lights_2":
+					if (status === "ON") {
+						checkbox14.checked = true;
+					} else {
+						checkbox14.checked = false;
+					}
+					localStorage.setItem('checkbox14State', checkbox14.checked);
+					break;
+				case "Factory_6_Alarms_1":
+					if (status === "ON") {
+						checkbox15.checked = true;
+					} else {
+						checkbox15.checked = false;
+					}
+					localStorage.setItem('checkbox15State', checkbox15.checked);
+					break;
+				case "Factory_6_Alarms_2":
+					if (status === "ON") {
+						checkbox16.checked = true;
+					} else {
+						checkbox16.checked = false;
+					}
+					localStorage.setItem('checkbox16State', checkbox16.checked);
+					break;
+				case "Factory_6_Gates_1":
+					if (status === "ON") {
+						checkbox17.checked = true;
+					} else {
+						checkbox17.checked = false;
+					}
+					localStorage.setItem('checkbox17State', checkbox17.checked);
+					break;
+				case "Factory_6_Gates_2":
+					if (status === "ON") {
+						checkbox18.checked = true;
+					} else {
+						checkbox18.checked = false;
+					}
+					localStorage.setItem('checkbox18State', checkbox18.checked);
+					break;
+
+				default:
+					break;
+			}
+
+			payloadData.text = topic + "(" + message.toString() + ")";
+
+			fetch(apiUrl, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(payloadData)
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log('Message sent:', data);
+				})
+				.catch(error => {
+					console.error('Error:', error);
+				});
+		})
+
+
+
+		// Callback executed when the connection fails
+		function onFailure(responseObject) {
+			console.log("Failed to connect: " + responseObject.errorMessage);
+		}
+
+
+		// Publish a message
+		function publishMessage(topic, payload) {
+			//var message = new Paho.MQTT.Message(payload);
+			// message.destinationName = topic;
+			// client.send(message);
+			console.log("published message , " + topic + " " + payload);
+			client.publish(topic, payload, { qos: 0, retain: false })
+		}
+
+		// Subscribe to a topic
+		function subscribeToTopic(topic) {
+			client.subscribe(topic);
+		}
+
+		// Unsubscribe from a topic
+		function unsubscribeFromTopic(topic) {
+			client.unsubscribe(topic);
+		}
+
+		function bttn1Function() {
+			publishMessage("Factory_1_Lights_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_1_Lights_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn2Function() {
+			publishMessage("Factory_1_Lights_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_1_Lights_2", "OFF");
+			}, 2000);
+		}
+
+		function bttn3Function() {
+			publishMessage("Factory_1_Alarms_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_1_Alarms_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn4Function() {
+			publishMessage("Factory_1_Alarms_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_1_Alarms_2", "OFF");
+			}, 2000);
+		}
+
+		function bttn5Function() {
+			publishMessage("Factory_1_Gates_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_1_Gates_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn6Function() {
+			publishMessage("Factory_1_Gates_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_1_Gates_2", "OFF");
+			}, 2000);
+		}
+
+
+
+
+		function bttn7Function() {
+			publishMessage("Factory_2_Lights_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_2_Lights_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn8Function() {
+			publishMessage("Factory_2_Lights_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_2_Lights_2", "OFF");
+			}, 2000);
+		}
+
+		function bttn9Function() {
+			publishMessage("Factory_2_Alarms_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_2_Alarms_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn10Function() {
+			publishMessage("Factory_2_Alarms_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_2_Alarms_2", "OFF");
+			}, 2000);
+		}
+
+		function bttn11Function() {
+			publishMessage("Factory_2_Gates_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_2_Gates_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn12Function() {
+			publishMessage("Factory_2_Gates_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_2_Gates_2", "OFF");
+			}, 2000);
+		}
+
+
+
+
+		function bttn13Function() {
+			publishMessage("Factory_3_Lights_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_3_Lights_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn14Function() {
+			publishMessage("Factory_3_Lights_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_3_Lights_2", "OFF");
+			}, 2000);
+		}
+
+		function bttn15Function() {
+			publishMessage("Factory_3_Alarms_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_3_Alarms_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn16Function() {
+			publishMessage("Factory_3_Alarms_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_3_Alarms_2", "OFF");
+			}, 2000);
+		}
+
+		function bttn17Function() {
+			publishMessage("Factory_3_Gates_1", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_3_Gates_1", "OFF");
+			}, 2000);
+		}
+
+		function bttn18Function() {
+			publishMessage("Factory_3_Gates_2", "ON");
+			setTimeout(function () {
+				publishMessage("Factory_3_Gates_2", "OFF");
+			}, 2000);
+		}
+
+
+		window.addEventListener('load', function () {
+
+			var checkbox1 = document.getElementById('checkbox1');
+			var savedState1 = localStorage.getItem('checkbox1State');
+
+			var checkbox2 = document.getElementById('checkbox2');
+			var savedState2 = localStorage.getItem('checkbox2State');
+
+			var checkbox3 = document.getElementById('checkbox3');
+			var savedState3 = localStorage.getItem('checkbox3State');
+
+			var checkbox4 = document.getElementById('checkbox4');
+			var savedState4 = localStorage.getItem('checkbox4State');
+
+			var checkbox5 = document.getElementById('checkbox5');
+			var savedState5 = localStorage.getItem('checkbox5State');
+
+			var checkbox6 = document.getElementById('checkbox6');
+			var savedState6 = localStorage.getItem('checkbox6State');
+
+			var checkbox7 = document.getElementById('checkbox7');
+			var savedState7 = localStorage.getItem('checkbox7State');
+
+			var checkbox8 = document.getElementById('checkbox8');
+			var savedState8 = localStorage.getItem('checkbox8State');
+
+			var checkbox9 = document.getElementById('checkbox9');
+			var savedState9 = localStorage.getItem('checkbox9State');
+
+
+			var checkbox10 = document.getElementById('checkbox10');
+			var savedState10 = localStorage.getItem('checkbox10State');
+
+			var checkbox11 = document.getElementById('checkbox11');
+			var savedState11 = localStorage.getItem('checkbox11State');
+
+			var checkbox12 = document.getElementById('checkbox12');
+			var savedState12 = localStorage.getItem('checkbox12State');
+
+			var checkbox13 = document.getElementById('checkbox13');
+			var savedState13 = localStorage.getItem('checkbox13State');
+
+			var checkbox14 = document.getElementById('checkbox14');
+			var savedState14 = localStorage.getItem('checkbox14State');
+
+			var checkbox15 = document.getElementById('checkbox15');
+			var savedState15 = localStorage.getItem('checkbox15State');
+
+			var checkbox16 = document.getElementById('checkbox16');
+			var savedState16 = localStorage.getItem('checkbox16State');
+
+			var checkbox17 = document.getElementById('checkbox17');
+			var savedState17 = localStorage.getItem('checkbox17State');
+
+			var checkbox18 = document.getElementById('checkbox18');
+			var savedState18 = localStorage.getItem('checkbox18State');
+
+			if (savedState1 !== null) {
+				checkbox1.checked = savedState1 === 'true';
+			}
+
+			if (savedState2 !== null) {
+				checkbox2.checked = savedState2 === 'true';
+			}
+
+			if (savedState3 !== null) {
+				checkbox3.checked = savedState3 === 'true';
+			}
+
+			if (savedState4 !== null) {
+				checkbox4.checked = savedState4 === 'true';
+			}
+
+			if (savedState5 !== null) {
+				checkbox5.checked = savedState5 === 'true';
+			}
+
+			if (savedState6 !== null) {
+				checkbox6.checked = savedState6 === 'true';
+			}
+
+			if (savedState7 !== null) {
+				checkbox7.checked = savedState7 === 'true';
+			}
+
+			if (savedState8 !== null) {
+				checkbox8.checked = savedState8 === 'true';
+			}
+
+			if (savedState9 !== null) {
+				checkbox9.checked = savedState9 === 'true';
+			}
+
+			if (savedState10 !== null) {
+				checkbox10.checked = savedState10 === 'true';
+			}
+
+			if (savedState11 !== null) {
+				checkbox11.checked = savedState11 === 'true';
+			}
+
+			if (savedState12 !== null) {
+				checkbox12.checked = savedState12 === 'true';
+			}
+
+			if (savedState13 !== null) {
+				checkbox13.checked = savedState13 === 'true';
+			}
+
+			if (savedState14 !== null) {
+				checkbox14.checked = savedState14 === 'true';
+			}
+
+			if (savedState15 !== null) {
+				checkbox15.checked = savedState15 === 'true';
+			}
+
+			if (savedState16 !== null) {
+				checkbox16.checked = savedState16 === 'true';
+			}
+
+			if (savedState17 !== null) {
+				checkbox17.checked = savedState17 === 'true';
+			}
+
+			if (savedState18 !== null) {
+				checkbox18.checked = savedState18 === 'true';
+			}
+		});
+
+
+	</script>
+
+</head>
+
+<body>
+	<div class="grid-container">
+		<!-- Repeat the grid-item div for each button -->
+		<!-- Total of 36 buttons (6 rows x 6 columns) -->
+		<!-- Customize the colors and content of each button as desired -->
+		<div id="buttn1" class="grid-item" onclick="bttn1Function()" style="text-align: center;">Factory 1 Lights 1
+		</div>
+
+		<div id="buttn2" class="grid-item" onclick="bttn2Function()" style="text-align: center;">Factory 1 Lights 2
+		</div>
+
+		<div id="buttn3" class="grid-item" onclick="bttn3Function()" style="text-align: center;">Factory 1 Alarms 1</div>
+
+		<div id="buttn4" class="grid-item" onclick="bttn4Function()" style="text-align: center;">Factory 1 Alarms 2</div>
+
+		<div id="buttn5" class="grid-item" onclick="bttn5Function()" style="text-align: center;">Factory 1 Gates 1</div>
+
+		<div id="buttn6" class="grid-item" onclick="bttn6Function()" style="text-align: center;">Factory 1 Gates 2</div>
+
+		<div id="buttn7" class="grid-item" onclick="bttn7Function()" style="text-align: center;">Factory 2 Lights 1
+		</div>
+
+		<div id="buttn8" class="grid-item" onclick="bttn8Function()" style="text-align: center;">Factory 2 Lights 2
+		</div>
+
+		<div id="buttn9" class="grid-item" onclick="bttn9Function()" style="text-align: center;">Factory 2 Alarms 1</div>
+
+		<div id="buttn10" class="grid-item" onclick="bttn10Function()" style="text-align: center;">Factory 2 Alarms 2
+		</div>
+
+		<div id="buttn11" class="grid-item" onclick="bttn11Function()" style="text-align: center;">Factory 2 Gates 1
+		</div>
+
+		<div id="buttn12" class="grid-item" onclick="bttn12Function()" style="text-align: center;">Factory 2 Gates 2
+		</div>
+
+		<div id="buttn13" class="grid-item" onclick="bttn13Function()" style="text-align: center;">Factory 3 Lights 1
+		</div>
+
+		<div id="buttn14" class="grid-item" onclick="bttn14Function()" style="text-align: center;">Factory 3 Lights 2
+		</div>
+
+		<div id="buttn15" class="grid-item" onclick="bttn15Function()" style="text-align: center;">Factory 3 Alarms 1
+		</div>
+
+		<div id="buttn16" class="grid-item" onclick="bttn16Function()" style="text-align: center;">Factory 3 Alarms 2
+		</div>
+
+		<div id="buttn17" class="grid-item" onclick="bttn17Function()" style="text-align: center;">Factory 3 Gates 1
+		</div>
+
+		<div id="buttn18" class="grid-item" onclick="bttn18Function()" style="text-align: center;">Factory 3 Gates 2
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox1" type="checkbox" onclick="checkBox1()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 4 Lights 1</div>
+		</div>
+
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox2" type="checkbox" onclick="checkBox2()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 4 Lights 2</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox3" type="checkbox" onclick="checkBox3()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 4 Alarms 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox4" type="checkbox" onclick="checkBox4()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 4 Alarms 2</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox5" type="checkbox" onclick="checkBox5()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 4 Gates 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox6" type="checkbox" onclick="checkBox6()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 4 Gates 2</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox7" type="checkbox" onclick="checkBox7()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 5 Lights 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox8" type="checkbox" onclick="checkBox8()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 5 Lights 2</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox9" type="checkbox" onclick="checkBox9()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 5 Alarms 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox10" type="checkbox" onclick="checkBox10()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 5 Alarms 2</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox11" type="checkbox" onclick="checkBox11()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 5 Gates 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox12" type="checkbox" onclick="checkBox12()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 5 Gates 2</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox13" type="checkbox" onclick="checkBox13()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 6 Lights 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox14" type="checkbox" onclick="checkBox14()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 6 Lights 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox15" type="checkbox" onclick="checkBox15()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 6 Alarms 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox16" type="checkbox" onclick="checkBox16()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 6 Alarms 2</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox17" type="checkbox" onclick="checkBox17()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 6 Gates 1</div>
+		</div>
+
+		<div id="wrapper">
+			<div class="block">
+				<div class="mid">
+					<label class="rocker rocker-small">
+						<input id="checkbox18" type="checkbox" onclick="checkBox18()">
+						<span class="switch-left">ON</span>
+						<span class="switch-right">OFF</span>
+					</label>
+				</div>
+			</div>
+			<div class="block center-text">Factory 6 Gates 2</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
